@@ -44,7 +44,7 @@ class ModelNuestro(Model):
 
     def next_actionV2(self, node):
         if(self.last_goal != self.current_goal):
-            # end_node, prev_node = self.bfs(node)
+            end_node, prev_node = self.bfs(node)
             end_node, prev_node = self.a_star(node)
             self.make_strategy(end_node, prev_node)
         return self.strategy(node)
@@ -73,7 +73,7 @@ class ModelNuestro(Model):
 
     def heuristica(self, node, goal):
         y_node, x_node = self.interpretCoords(node)
-        y_goal, x_goal = self.interpretCoords(goal)
+        y_goal, x_goal = self.interpretCoords(str(goal[0]))
         return abs(y_node - y_goal) + abs(x_node - x_goal)
 
     def interpretCoords(self, node):
